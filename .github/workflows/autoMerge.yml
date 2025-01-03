@@ -20,9 +20,14 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
       - name: Create a pull request using GitHub CLI
+        id: create_pr
         run: |
           gh pr create \
             --base develop \
             --head main \
             --title "Sync Main to Develop" \
             --body "Automatically created PR to sync changes from Main to Develop."
+
+      - name: Merge the pull request using GitHub CLI
+        run: |
+          gh pr merge ${{ steps.create_pr.outputs.pull_request_number }} --merge --admin
