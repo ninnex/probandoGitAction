@@ -1,9 +1,9 @@
-name: Auto PR from Master to Develop
+name: Auto PR from Main to Develop
 
 on:
   pull_request:
     branches:
-      - master
+      - main
     types:
       - closed
 
@@ -23,6 +23,6 @@ jobs:
         run: |
           gh pr create \
             --base develop \
-            --head master \
-            --title "Sync Master to Develop" \
-            --body "Automatically created PR to sync changes from Master to Develop."
+            --head main \
+            --title "Sync Main to Develop" \
+            --body "Automatically created PR to sync changes from Main to Develop."
